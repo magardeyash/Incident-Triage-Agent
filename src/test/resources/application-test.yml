@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:incident_triage_test;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;NON_KEYWORDS=VALUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    show-sql: false
+  flyway:
+    enabled: false
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+
+app:
+  security:
+    api-key: test-api-key
+    header-name: X-API-Key

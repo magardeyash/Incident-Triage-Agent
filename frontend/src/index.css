@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #05090f;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, .font-mono {
+  font-family: 'JetBrains Mono', 'Cascadia Code', monospace;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* Glow effects */
+.glow-blue { box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+.glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+.glow-purple { box-shadow: 0 0 20px rgba(139, 92, 246, 0.15); }
+
+/* Subtle gradient background for cards */
+.card-gradient {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(9, 13, 22, 0.9));
+}
+
+/* Animated scanning line */
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.35s ease-out forwards;
+}
+
+/* Table row hover */
+.table-row-hover:hover {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+/* Nav link active indicator */
+.nav-active-dot {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
+
+/* Grid pattern background */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Progress bar shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
