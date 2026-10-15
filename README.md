@@ -29,7 +29,7 @@ flowchart TD
     H -->|Audit Logging| N[(tool_call_audits)]
     F --> O[ReportValidator & CitationChecker]
     O -->|Validated Report| P[(investigation_reports)]
-    P --> Q[GET /api/investigations/{id}/report]
+    P --> Q[GET /api/investigations/:id/report]
 ```
 
 ### Core Tenets
