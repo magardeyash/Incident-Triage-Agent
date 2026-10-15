@@ -9,6 +9,17 @@ import {
 } from '../types/api';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_KEY = import.meta.env.VITE_BACKEND_API_KEY || 'demo-test-api-key';
+
+function getHeaders(contentType: boolean = true): HeadersInit {
+  const headers: Record<string, string> = {
+    'X-API-Key': API_KEY,
+  };
+  if (contentType) {
+    headers['Content-Type'] = 'application/json';
+  }
+  return headers;
+}
 
 export class ApiError extends Error {
   status: number;
@@ -45,9 +56,7 @@ export const api = {
   async submitAlert(request: CreateAlertRequest): Promise<CreateAlertResponse> {
     const res = await fetch(`${BASE_URL}/api/alerts`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getHeaders(true),
       body: JSON.stringify(request),
     });
     return handleResponse<CreateAlertResponse>(res);
@@ -55,28 +64,28 @@ export const api = {
 
   async getAlert(id: number): Promise<AlertResponse> {
     const res = await fetch(`${BASE_URL}/api/alerts/${id}`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
     });
     return handleResponse<AlertResponse>(res);
   },
 
   async listInvestigations(): Promise<InvestigationResponse[]> {
     const res = await fetch(`${BASE_URL}/api/investigations`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
     });
     return handleResponse<InvestigationResponse[]>(res);
   },
 
   async getInvestigation(id: number): Promise<InvestigationResponse> {
     const res = await fetch(`${BASE_URL}/api/investigations/${id}`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
     });
     return handleResponse<InvestigationResponse>(res);
   },
 
   async getReport(investigationId: number): Promise<ReportResponse> {
     const res = await fetch(`${BASE_URL}/api/investigations/${investigationId}/report`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
     });
     return handleResponse<ReportResponse>(res);
   },
@@ -84,7 +93,7 @@ export const api = {
   async runEvaluation(): Promise<EvaluationSummary> {
     const res = await fetch(`${BASE_URL}/api/evaluations/run`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
     });
     return handleResponse<EvaluationSummary>(res);
   },
@@ -100,7 +109,7 @@ export const api = {
       minSimilarity: minSimilarity.toString(),
     });
     const res = await fetch(`${BASE_URL}/api/runbooks/search?${params.toString()}`, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
     });
     return handleResponse<RunbookSearchResult[]>(res);
   },

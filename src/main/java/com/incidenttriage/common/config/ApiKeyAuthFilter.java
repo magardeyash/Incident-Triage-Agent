@@ -36,6 +36,12 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
+        // Bypass preflight CORS OPTIONS requests
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         // Only enforce API key authentication on /api/ endpoints
         if (path.startsWith("/api/")) {
             String providedKey = request.getHeader(headerName);
